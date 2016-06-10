@@ -18,7 +18,6 @@ module.exports = {
     // better, more recent grep
     'homebrew/dupes/grep',
     'imagemagick',
-    'imagesnap',
     // jq is a sort of JSON grep
     'jq',
     // Install some other useful utilities like `sponge`
@@ -28,54 +27,39 @@ module.exports = {
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
-    'tmux',
     'tree',
     'ttyrec',
     // better, more recent vim
-    'require_brew vim --override-system-vi',
+    'vim',
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri'
+    'wget --enable-iri',
+    'node',
+    'htop',
+    'p7zip',
+    'unrar',
+    'python3',
+    'jp2a',
+    'git-extras',
+    'freetype',
+    'ssh-copy-id',
+    'sdkman'
   ],
   cask: [
-    //'adium',
-    //'amazon-cloud-drive',
-    //'atom',
-    'box-sync',
-    //'comicbooklover',
-    //'diffmerge',
-    //'dropbox',
-    //'evernote',
-    'gpgtools',
-    //'ireadfast',
+    '1password',
+    'smartgit',
+    'alfred',
+    'sequel-pro',
+    'istat-menus',
+    'smoothmouse',
+    'google-chrome',
+    'owncloud',
+    'diffmerge',
     'iterm2',
-    //'macvim',
-    'sizeup',
-    //'sketchup',
-    'slack',
-    'the-unarchiver',
-    //'torbrowser',
-    //'transmission',
-    //'vlc',
-    'xquartz'
+    'spectacle',
   ],
   gem: [
-    'git-up'
   ],
   npm: [
-    'antic',
-    'buzzphrase',
-    'bower',
-    'bower-check-updates',
-    'esformatter',
-    'eslint',
-    'instant-markdown-d',
-    'npm-check',
-    'yo',
-    'generator-dockerize',
-    'gulp',
-    'prettyjson',
-    'trash',
-    'vtop'
   ]
 };

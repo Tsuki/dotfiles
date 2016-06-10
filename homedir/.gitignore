@@ -20,6 +20,12 @@ Temporary Items
 .apdisk
 
 ############
+# Jetbrain #
+############
+.idea/
+*.iml
+
+############
 # Security #
 ############
 id_rsa
