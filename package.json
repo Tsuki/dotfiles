@@ -1,6 +1,6 @@
 {
   "name": "dotfiles",
-  "version": "1.0.0",
+  "version": "4.4.1",
   "description": "atomantic dotfiles for osx",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,7 @@
   "keywords": [
     "dotfiles",
     "osx",
+    "macos",
     "automation",
     "setup",
     "developer",
@@ -28,7 +29,7 @@
   },
   "homepage": "https://github.com/atomantic/dotfiles#readme",
   "dependencies": {
-    "inquirer": "^1.0.2",
-    "node-emoji": "^1.3.0"
+    "inquirer": "1.0.2",
+    "node-emoji": "1.3.0"
   }
 }
