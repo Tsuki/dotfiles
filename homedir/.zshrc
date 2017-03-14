@@ -30,24 +30,14 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(git git-extras ruby rails extract sublime brew)
-plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras gulp history cp brew sublime docker ruby)
+plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras gulp history cp brew sublime docker ruby gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source /usr/local/opt/nvm/nvm.sh
-
 autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use &> /dev/null
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    nvm use default &> /dev/null
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#add-zsh-hook chpwd
 
 # Customize to your needs...
 unsetopt correct
@@ -62,10 +52,5 @@ unsetopt correct
 eval "$(rbenv init -)"
 eval "$(jenv init -)"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-export HOMEBREW_TEMP=/var/tmp/brew
-function swap()         
-{
-    local TMPFILE=tmp.$$
-    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
-}
+#export HOMEBREW_TEMP=/var/tmp/brew
 export LESSOPEN='|pygmentize %s'

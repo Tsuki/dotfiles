@@ -63,7 +63,10 @@ module.exports = {
     'spectacle',
   ],
   gem: [
-    'git-up'
+    'git-up',
+    'pry',
+    'pry-coolline',
+    'pry-nav',
   ],
   npm: [
     //'antic',
