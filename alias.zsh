@@ -17,7 +17,10 @@ alias imageclean="docker images --filter dangling=true -q | xargs docker rmi"
 
 alias sdkinit='source "$HOME/.sdkman/bin/sdkman-init.sh"'
 alias nvminit='. "$(brew --prefix nvm)/nvm.sh" --no-use'
-alias gwi='gunwip && gwip'
+alias wip='gunwip && gwip'
+if [ "$(uname)" == "Darwin" ]; then
+	alias rm='rmtrash'
+fi
 function swap()
 {
     local TMPFILE=tmp.$$

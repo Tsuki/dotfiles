@@ -200,3 +200,5 @@
   required = true
 [gpg]
 	program = gpg
+[http]
+    sslVerify = false

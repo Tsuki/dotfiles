@@ -114,7 +114,7 @@ if [[ $? = 0 ]]; then
     sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
   fi
 fi
-
+if [ "$(uname)" == "Darwin" ]; then
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
 MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
@@ -198,7 +198,7 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
   sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/zsh > /dev/null 2>&1
   ok
 fi
-
+fi
 if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
   git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
 fi
@@ -232,7 +232,7 @@ bot "Installing vim plugins"
 # cmake is required to compile vim bundle YouCompleteMe
 # require_brew cmake
 vim +PluginInstall +qall > /dev/null 2>&1
-
+fi
 bot "installing fonts"
 ./fonts/install.sh
 brew tap caskroom/fonts
@@ -1045,6 +1045,6 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "iCal" "Terminal"; do
   killall "${app}" > /dev/null 2>&1
 done
-
+fi
 
 bot "Woot! All done. Kill this terminal and launch iTerm"
