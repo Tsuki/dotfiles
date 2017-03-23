@@ -24,7 +24,7 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S %d/%m/%Y}"
 
 # disable colors in ls
 # export DISABLE_LS_COLORS="true"
-
+export LANG="en_US.UTF-8"
 # disable autosetting terminal title.
 export DISABLE_AUTO_TITLE="true"
 
@@ -33,7 +33,7 @@ export DISABLE_AUTO_TITLE="true"
 plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras gulp history cp brew sublime docker ruby gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
-source $ZSH/../alias.zsh
+source ~/.alias.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

@@ -1045,6 +1045,6 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "iCal" "Terminal"; do
   killall "${app}" > /dev/null 2>&1
 done
-fi
+
 
 bot "Woot! All done. Kill this terminal and launch iTerm"
