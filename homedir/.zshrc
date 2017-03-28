@@ -35,7 +35,7 @@ plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias.zsh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 autoload -U add-zsh-hook
 #add-zsh-hook chpwd
@@ -50,8 +50,9 @@ unsetopt correct
 # Custom
 ############
 # source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 eval "$(jenv init -)"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-#export HOMEBREW_TEMP=/var/tmp/brew
+export HOMEBREW_TEMP=/var/tmp/brew
 export LESSOPEN='|pygmentize %s'
