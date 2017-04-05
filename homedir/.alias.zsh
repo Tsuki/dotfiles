@@ -5,7 +5,7 @@ alias cls='clear'
 # sort files in current directory by the number of words they contain
 alias wordy='wc -w * | sort | tail -n10'
 alias filecount='ls -aRF | wc -l'
-alias u='du -sh * | gsort -h'
+alias u='du -sh * | sort -h'
 #alias adventure='emacs -batch -l dunnet'
 #alias mailsize='du -hs ~/Library/mail'
 # alias ttop='top -ocpu -R -F -s 2 -n30'
