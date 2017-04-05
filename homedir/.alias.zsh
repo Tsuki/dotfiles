@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 alias reload!='. ~/.zshrc'
 alias cls='clear'
-
+alias lls='ll -srt'
 # sort files in current directory by the number of words they contain
 alias wordy='wc -w * | sort | tail -n10'
 alias filecount='ls -aRF | wc -l'
