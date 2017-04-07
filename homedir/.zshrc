@@ -55,6 +55,7 @@ eval "$(rbenv init -)"
 eval "$(jenv init -)"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export LESSOPEN='|pygmentize %s'
+screenfetch
 ###-begin-pm2-completion-###
 ### credits to npm for the completion file model
 #
