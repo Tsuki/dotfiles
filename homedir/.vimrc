@@ -46,6 +46,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'godlygeek/tabular'
 " language tools
+Plugin 'udalov/kotlin-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'millermedeiros/vim-esformatter'
 Plugin 'digitaltoad/vim-pug'
