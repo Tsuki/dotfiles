@@ -49,13 +49,17 @@ unsetopt correct
 ############
 # Custom
 ############
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # source "$HOME/.sdkman/bin/sdkman-init.sh"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 eval "$(jenv init -)"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export LESSOPEN='|pygmentize %s'
-screenfetch
+if [ "$(uname)" != "Darwin" ]; then
+    screenfetch
+fi
 ###-begin-pm2-completion-###
 ### credits to npm for the completion file model
 #

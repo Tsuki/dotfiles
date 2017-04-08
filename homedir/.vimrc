@@ -28,6 +28,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
 " Navigation (IDE frame)
+Plugin 'git@github.com:leafgarland/typescript-vim.git'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-airline/vim-airline'
@@ -166,7 +167,7 @@ set ignorecase " case insensitive by default
 set smartcase " if there are caps, go case-sensitive
 set completeopt=menu,longest,preview " improve the way autocomplete works
 "set cursorcolumn " show the current column
-set cursorline
+"set cursorline
 hi CursorLine term=underline ctermbg=000 guibg=#493a35
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding
