@@ -30,7 +30,7 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(git git-extras ruby rails extract sublime brew)
-plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras gulp history cp brew sublime docker ruby gpg-agent)
+plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras gulp history cp brew sublime docker ruby gpg-agent yarn)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias.zsh
