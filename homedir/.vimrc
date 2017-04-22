@@ -28,7 +28,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
 " Navigation (IDE frame)
-Plugin 'git@github.com:leafgarland/typescript-vim.git'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-airline/vim-airline'
@@ -41,7 +40,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'dkprice/vim-easygrep'
 " visual undo list
 Plugin 'sjl/gundo.vim'
-" Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 " markdown preview: opens browser with live reload when vim opens .md
 Plugin 'suan/vim-instant-markdown'
 Plugin 'godlygeek/tabular'
@@ -294,3 +293,19 @@ let g:syntastic_javascript_checkers = ['eslint']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:sneak#streak = 1
 let g:airline_theme='bubblegum'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" lazy ':'
+Plugin 'mileszs/ack.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+map \ :
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" 设置过滤不进行查找的后缀名
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
+nmap <F8> :TagbarToggle<CR>
