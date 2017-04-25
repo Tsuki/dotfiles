@@ -35,7 +35,7 @@ plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias.zsh
 
-#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 autoload -U add-zsh-hook
 #add-zsh-hook chpwd
