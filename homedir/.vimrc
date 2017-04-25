@@ -297,6 +297,7 @@ let g:airline_theme='bubblegum'
 " Custom
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lazy ':'
+let mapleader=";"
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'leafgarland/typescript-vim'
@@ -309,3 +310,9 @@ let g:ctrlp_cmd = 'CtrlP'
 " 设置过滤不进行查找的后缀名
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
 nmap <F8> :TagbarToggle<CR>
+nmap <F4> :GundoToggle<CR>
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap ha <Plug>GitGutterStageHunk
+nmap hr <Plug>GitGutterUndoHunk
+nmap hv <Plug>GitGutterPreviewHunk
