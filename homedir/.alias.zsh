@@ -21,6 +21,8 @@ alias nvminit='. "$(brew --prefix nvm)/nvm.sh" --no-use'
 alias wip='gunwip && gwip'
 if [ "$(uname -s)" = "Darwin" ]; then
 	alias rm='rmtrash'
+else
+	alias rm='trash'
 fi
 function swap()
 {
