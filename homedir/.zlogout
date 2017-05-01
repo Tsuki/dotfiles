@@ -1,3 +1,5 @@
 # Store dirs stack
 # See ~/.dotfiles/oh-my-zsh/plugins/dirspersist.plugin.zsh
-dirpersiststore
+cat <<-EOF
+Thank you. Come again!
+EOF
