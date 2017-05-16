@@ -25,6 +25,7 @@ else
 	alias rm='trash'
 fi
 alias pipf='pip freeze > requirements.txt'
+alias psg='ps aux |grep'
 function swap()
 {
     local TMPFILE=tmp.$$
