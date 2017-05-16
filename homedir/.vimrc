@@ -316,3 +316,4 @@ nmap [h <Plug>GitGutterPrevHunk
 nmap ha <Plug>GitGutterStageHunk
 nmap hr <Plug>GitGutterUndoHunk
 nmap hv <Plug>GitGutterPreviewHunk
+nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>

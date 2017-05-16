@@ -24,6 +24,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
 else
 	alias rm='trash'
 fi
+alias pipf='pip freeze > requirements.txt'
 function swap()
 {
     local TMPFILE=tmp.$$
