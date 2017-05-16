@@ -313,7 +313,7 @@ nmap <F8> :TagbarToggle<CR>
 nmap <F4> :GundoToggle<CR>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap ha <Plug>GitGutterStageHunk
-nmap hr <Plug>GitGutterUndoHunk
+nmap hs <Plug>GitGutterStageHunk
+nmap hu <Plug>GitGutterUndoHunk
 nmap hv <Plug>GitGutterPreviewHunk
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
