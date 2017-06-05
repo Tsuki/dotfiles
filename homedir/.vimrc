@@ -301,6 +301,7 @@ let mapleader=";"
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'scrooloose/nerdcommenter'
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
