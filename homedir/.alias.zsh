@@ -15,7 +15,8 @@ alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && kil
 #dockers
 alias containerclean="docker ps -a -q | xargs docker rm"
 alias imageclean="docker images --filter dangling=true -q | xargs docker rmi"
-
+alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
 alias sdkinit='source "$HOME/.sdkman/bin/sdkman-init.sh"'
 alias nvminit='. "$(brew --prefix nvm)/nvm.sh" --no-use'
 alias wip='gunwip && gwip'
