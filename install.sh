@@ -114,124 +114,126 @@ if [[ $? = 0 ]]; then
     sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
   fi
 fi
-if [ "$(uname)" == "Darwin" ]; then
-	MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
-	MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
-	if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-	  read -r -p "Do you want to use the project's custom desktop wallpaper? [Y|n] " response
-	  if [[ $response =~ ^(no|n|N) ]];then
-	    echo "skipping...";
-	    ok
-	  else
-	    running "Set a custom wallpaper image"
-	    # `DefaultDesktop.jpg` is already a symlink, and
-	    # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-	    rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-	    sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
-	    sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
-	    sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
-	    sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
-	    sudo cp ./img/wallpaper.jpg /System/Library/CoreServices/DefaultDesktop.jpg;
-	    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra.jpg;
-	    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra\ 2.jpg;
-	    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/El\ Capitan.jpg;ok
-	  fi
-	fi
 
-	#####
-	# install homebrew (CLI Packages)
-	#####
-
-	running "checking homebrew install"
-	brew_bin=$(which brew) 2>&1 > /dev/null
-	if [[ $? != 0 ]]; then
-	  action "installing homebrew"
-	    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	    if [[ $? != 0 ]]; then
-	      error "unable to install homebrew, script $0 abort!"
-	      exit 2
-	  fi
-	else
-	  ok
-	  # Make sure we’re using the latest Homebrew
-	  running "updating homebrew"
-	  brew update
-	  ok
-	  bot "before installing brew packages, we can upgrade any outdated packages."
-	  read -r -p "run brew upgrade? [y|N] " response
-	  if [[ $response =~ ^(y|yes|Y) ]];then
-	      # Upgrade any already-installed formulae
-	      action "upgrade brew packages..."
-	      brew upgrade
-	      ok "brews updated..."
-	  else
-	      ok "skipped brew package upgrades.";
-	  fi
-	fi
-
-	#####
-	# install brew cask (UI Packages)
-	#####
-	running "checking brew-cask install"
-	output=$(brew tap | grep cask)
-	if [[ $? != 0 ]]; then
-	  action "installing brew-cask"
-	  require_brew caskroom/cask/brew-cask
-	fi
-	brew tap caskroom/versions > /dev/null 2>&1
-	ok
-
-	# skip those GUI clients, git command-line all the way
-	require_brew git
-	# need fontconfig to install/build fonts
-	require_brew fontconfig
-	# update zsh to latest
-	require_brew zsh
-	# update ruby to latest
-	require_brew ruby
-	# set zsh as the user login shell
-	CURRENTSHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
-	if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
-	  bot "setting newer homebrew zsh (/usr/local/bin/zsh) as your shell (password required)"
-	  # sudo bash -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-	  # chsh -s /usr/local/bin/zsh
-	  sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/zsh > /dev/null 2>&1
-	  ok
-	fi
+MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
+MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
+if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
+  read -r -p "Do you want to use the project's custom desktop wallpaper? [Y|n] " response
+  if [[ $response =~ ^(no|n|N) ]];then
+    echo "skipping...";
+    ok
+  else
+    running "Set a custom wallpaper image"
+    # `DefaultDesktop.jpg` is already a symlink, and
+    # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
+    rm -rf ~/Library/Application Support/Dock/desktoppicture.db
+    sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
+    sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
+    sudo cp ./img/wallpaper.jpg /System/Library/CoreServices/DefaultDesktop.jpg;
+    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra.jpg;
+    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra\ 2.jpg;
+    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/El\ Capitan.jpg;ok
+  fi
 fi
-	if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
-	  git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
-	fi
 
-	bot "creating symlinks for project dotfiles..."
-	pushd homedir > /dev/null 2>&1
-	now=$(date +"%Y.%m.%d.%H.%M.%S")
+#####
+# install homebrew (CLI Packages)
+#####
 
-	for file in .*; do
-	  if [[ $file == "." || $file == ".." ]]; then
-	    continue
-	  fi
-	  running "~/$file"
-	  # if the file exists:
-	  if [[ -e ~/$file ]]; then
-	      mkdir -p ~/.dotfiles_backup/$now
-	      mv ~/$file ~/.dotfiles_backup/$now/$file
-	      echo "backup saved as ~/.dotfiles_backup/$now/$file"
-	  fi
-	  # symlink might still exist
-	  unlink ~/$file > /dev/null 2>&1
-	  # create the link
-	  ln -s ~/.dotfiles/homedir/$file ~/$file
-	  echo -en '\tlinked';ok
-	done
+running "checking homebrew install"
+brew_bin=$(which brew) 2>&1 > /dev/null
+if [[ $? != 0 ]]; then
+  action "installing homebrew"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if [[ $? != 0 ]]; then
+      error "unable to install homebrew, script $0 abort!"
+      exit 2
+  fi
+else
+  ok
+  # Make sure we’re using the latest Homebrew
+  running "updating homebrew"
+  brew update
+  ok
+  bot "before installing brew packages, we can upgrade any outdated packages."
+  read -r -p "run brew upgrade? [y|N] " response
+  if [[ $response =~ ^(y|yes|Y) ]];then
+      # Upgrade any already-installed formulae
+      action "upgrade brew packages..."
+      brew upgrade
+      ok "brews updated..."
+  else
+      ok "skipped brew package upgrades.";
+  fi
+fi
 
-	popd > /dev/null 2>&1
+#####
+# install brew cask (UI Packages)
+#####
+running "checking brew-cask install"
+output=$(brew tap | grep cask)
+if [[ $? != 0 ]]; then
+  action "installing brew-cask"
+  require_brew caskroom/cask/brew-cask
+fi
+brew tap caskroom/versions > /dev/null 2>&1
+ok
+
+# skip those GUI clients, git command-line all the way
+require_brew git
+# need fontconfig to install/build fonts
+require_brew fontconfig
+# update zsh to latest
+require_brew zsh
+# update ruby to latest
+# use versions of packages installed with homebrew
+RUBY_CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl` --with-readline-dir=`brew --prefix readline` --with-libyaml-dir=`brew --prefix libyaml`"
+require_brew ruby
+# set zsh as the user login shell
+CURRENTSHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
+if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
+  bot "setting newer homebrew zsh (/usr/local/bin/zsh) as your shell (password required)"
+  # sudo bash -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+  # chsh -s /usr/local/bin/zsh
+  sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/zsh > /dev/null 2>&1
+  ok
+fi
+
+if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
+  git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
+fi
+
+bot "creating symlinks for project dotfiles..."
+pushd homedir > /dev/null 2>&1
+now=$(date +"%Y.%m.%d.%H.%M.%S")
+
+for file in .*; do
+  if [[ $file == "." || $file == ".." ]]; then
+    continue
+  fi
+  running "~/$file"
+  # if the file exists:
+  if [[ -e ~/$file ]]; then
+      mkdir -p ~/.dotfiles_backup/$now
+      mv ~/$file ~/.dotfiles_backup/$now/$file
+      echo "backup saved as ~/.dotfiles_backup/$now/$file"
+  fi
+  # symlink might still exist
+  unlink ~/$file > /dev/null 2>&1
+  # create the link
+  ln -s ~/.dotfiles/homedir/$file ~/$file
+  echo -en '\tlinked';ok
+done
+
+popd > /dev/null 2>&1
 
 
-	bot "Installing vim plugins"
-	# cmake is required to compile vim bundle YouCompleteMe
-	# require_brew cmake
-	vim +PluginInstall +qall > /dev/null 2>&1
+bot "Installing vim plugins"
+# cmake is required to compile vim bundle YouCompleteMe
+# require_brew cmake
+vim +PluginInstall +qall > /dev/null 2>&1
 
 bot "installing fonts"
 ./fonts/install.sh
@@ -606,7 +608,7 @@ running "Disable press-and-hold for keys in favor of key repeat"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false;ok
 
 running "Set a blazingly fast keyboard repeat rate"
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 10;ok
 
 running "Set language and text formats (english/US)"
