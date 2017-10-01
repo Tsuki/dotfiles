@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-alias reload!='. ~/.zshrc'
 alias cls='clear'
 alias lls='ll -srt'
 # sort files in current directory by the number of words they contain
@@ -32,4 +31,4 @@ function swap()
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
 }
-
+alias pngpaste='pngpaste "$(date).png"'

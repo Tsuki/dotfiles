@@ -10,3 +10,6 @@
 [submodule "homedir/.tmux/plugins/tpm"]
 	path = homedir/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule ".vim/bundle/Vundle.vim"]
+	path = .vim/bundle/Vundle.vim
+	url = git://github.com/VundleVim/Vundle.vim.git

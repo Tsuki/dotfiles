@@ -313,7 +313,7 @@ let g:airline_theme='bubblegum'
 let mapleader=";"
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'leafgarland/typescript-vim'
+"Plugin 'leafgarland/typescript-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'davidhalter/jedi-vim'
 if executable('ag')
