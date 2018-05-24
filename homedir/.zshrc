@@ -4,6 +4,7 @@ export ZSH=$HOME/.dotfiles/oh-my-zsh
 # POWERLEVEL9K_MODE='awesome-patched'
 export ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # https://github.com/bhilburn/powerlevel9k#customizing-prompt-segments
 # https://github.com/bhilburn/powerlevel9k/wiki/Stylizing-Your-Prompt
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('context' 'dir' 'vcs')
@@ -143,3 +144,4 @@ if [ -f /Users/AlexLeung/.tnsrc ]; then
     source /Users/AlexLeung/.tnsrc 
 fi
 ###-tns-completion-end-###
+export HOMEBREW_NO_AUTO_UPDATE=1

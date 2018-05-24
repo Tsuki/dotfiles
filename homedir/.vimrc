@@ -316,6 +316,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'leafgarland/typescript-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'plasticboy/vim-markdown'
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
@@ -327,6 +328,7 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
 map ,n <plug>NERDTreeTabsToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F4> :GundoToggle<CR>
+nmap mt :TableFormat<CR><CR>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 nmap hs <Plug>GitGutterStageHunk
