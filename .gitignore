@@ -13,3 +13,6 @@ homedir/.vim/.netrwhist
 homedir/.vim/bundle/*
 !homedir/.vim/bundle/.gitignore
 !homedir/.vim/bundle/Vundle.vim
+homedir/.gnupg/*
+!homedir/.gnupg/gpg-agent.conf
+!homedir/.gnupg/gpg.conf

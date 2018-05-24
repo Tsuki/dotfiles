@@ -53,6 +53,7 @@ unsetopt correct
 ############
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 # source "$HOME/.sdkman/bin/sdkman-init.sh"
 # env
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -145,3 +146,4 @@ if [ -f /Users/AlexLeung/.tnsrc ]; then
 fi
 ###-tns-completion-end-###
 export HOMEBREW_NO_AUTO_UPDATE=1
+export GPG_TTY=$(tty)
