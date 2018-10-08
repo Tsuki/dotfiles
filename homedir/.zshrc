@@ -31,7 +31,7 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(git git-extras ruby rails extract sublime brew)
-plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras gulp history cp brew sublime ruby gpg-agent pip docker zsh-completions)
+plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras history cp brew sublime ruby gpg-agent pip docker)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias.zsh
@@ -54,6 +54,7 @@ unsetopt correct
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
 # source "$HOME/.sdkman/bin/sdkman-init.sh"
 # env
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -147,3 +148,12 @@ fi
 ###-tns-completion-end-###
 export HOMEBREW_NO_AUTO_UPDATE=1
 export GPG_TTY=$(tty)
+if [ $commands[minikube] ]; then
+  source <(minikube completion zsh)
+fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
