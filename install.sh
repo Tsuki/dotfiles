@@ -114,7 +114,7 @@ if [[ $? = 0 ]]; then
     sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig;
   fi
 fi
-
+if [ "$(uname)" == "Darwin" ]; then
 MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
 MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
 if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
@@ -199,6 +199,7 @@ if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
   # chsh -s /usr/local/bin/zsh
   sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/zsh > /dev/null 2>&1
   ok
+fi
 fi
 
 if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
