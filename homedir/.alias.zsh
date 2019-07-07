@@ -32,3 +32,4 @@ function swap()
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
 }
 alias pngpaste='pngpaste "$(date).png"'
+alias proxy='ALL_PROXY=socks5://127.0.0.1:8070'
