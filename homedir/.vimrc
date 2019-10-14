@@ -317,6 +317,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'lbrayner/vim-rzip'
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif

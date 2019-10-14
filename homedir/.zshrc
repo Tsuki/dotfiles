@@ -7,8 +7,9 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # https://github.com/bhilburn/powerlevel9k#customizing-prompt-segments
 # https://github.com/bhilburn/powerlevel9k/wiki/Stylizing-Your-Prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('context' 'dir' 'vcs')
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('status' 'history' 'time')
+POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status pyenv go_version history time)
 # colorcode test
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
 POWERLEVEL9K_NVM_FOREGROUND='000'
@@ -31,7 +32,7 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(git git-extras ruby rails extract sublime brew)
-plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras history cp brew sublime ruby gpg-agent pip docker)
+plugins=(colorize compleat dirpersist extract ssh-agent autojump git git-extras history cp brew sublime ruby gpg-agent pip pyenv docker)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.alias.zsh
@@ -51,17 +52,11 @@ unsetopt correct
 ############
 # Custom
 ############
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
-export PATH="/usr/local/opt/gettext/bin:$PATH"
 # source "$HOME/.sdkman/bin/sdkman-init.sh"
 # env
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi
@@ -80,6 +75,16 @@ if hash kompose 2>/dev/null; then
     source <(helm completion zsh)
     #source <(minikube completion bash)
 fi
+export PATH="$GOENV_ROOT/bin:$PATH"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+
+# macOS path
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
 #Android
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export NDK_HOME=$ANDROID_HOME/ndk-bundle

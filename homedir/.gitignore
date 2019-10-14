@@ -108,3 +108,4 @@ build/Release
 node_modules
 
 cmake-build-debug
+.java-version

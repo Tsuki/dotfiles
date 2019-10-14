@@ -33,3 +33,8 @@ function swap()
 }
 alias pngpaste='pngpaste "$(date).png"'
 alias proxy='ALL_PROXY=socks5://127.0.0.1:8070'
+alias lzd='lazydocker'
+alias dps='docker ps'
+alias dbash='f() {docker exec -it $(docker ps --filter name=$1 -q) bash};f'
+alias dsh='f() {docker exec -it $(docker ps --filter name=$1 -q) sh};f'
+alias dkill='f() {docker kill $(docker ps --filter name=$1 -q)};f'
