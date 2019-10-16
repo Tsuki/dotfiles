@@ -56,7 +56,11 @@ unsetopt correct
 # env
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
+
 export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
 fi
@@ -75,9 +79,6 @@ if hash kompose 2>/dev/null; then
     source <(helm completion zsh)
     #source <(minikube completion bash)
 fi
-export PATH="$GOENV_ROOT/bin:$PATH"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
 
 # macOS path
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
