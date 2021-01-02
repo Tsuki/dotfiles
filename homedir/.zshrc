@@ -3,6 +3,7 @@ export ZSH=$HOME/.dotfiles/oh-my-zsh
 # if you want to use this, change your non-ascii font to Droid Sans Mono for Awesome
 # POWERLEVEL9K_MODE='awesome-patched'
 export ZSH_THEME="powerlevel9k/powerlevel9k"
+# export ZSH_THEME="agnoster"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 # https://github.com/bhilburn/powerlevel9k#customizing-prompt-segments
@@ -52,32 +53,26 @@ unsetopt correct
 ############
 # Custom
 ############
-# source "$HOME/.sdkman/bin/sdkman-init.sh"
-# env
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.pyenv/bin:$PATH"
-
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
 if hash rbenv 2>/dev/null; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
 fi
+
 if hash jenv  2>/dev/null; then
     eval "$(jenv init -)"
 fi
+
 if hash pyenv 2>/dev/null; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
+
 if hash goenv 2>/dev/null; then
+    export PATH="$HOME/.goenv/bin:$PATH"
+    export PATH="$GOROOT/bin:$PATH"
+    export PATH="$PATH:$GOPATH/bin"
     eval "$(goenv init -)"
-fi
-if hash kompose 2>/dev/null; then
-    source <(kompose completion zsh)
-    source <(helm completion zsh)
-    #source <(minikube completion bash)
 fi
 
 # macOS path
@@ -86,72 +81,11 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 
-#Android
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export NDK_HOME=$ANDROID_HOME/ndk-bundle
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export LESSOPEN='|pygmentize %s'
-if [ "$(uname)" != "Darwin" ]; then
-    screenfetch
-fi
-###-begin-pm2-completion-###
-### credits to npm for the completion file model
-#
-# Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
-#
 
-COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
-COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
-export COMP_WORDBREAKS
 
-if type complete &>/dev/null; then
-  _pm2_completion () {
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           pm2 completion -- "${COMP_WORDS[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _pm2_completion pm2
-elif type compctl &>/dev/null; then
-  _pm2_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       pm2 completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _pm2_completion + -f + pm2
-fi
-###-end-pm2-completion-###
 
-###-tns-completion-start-###
-if [ -f /Users/tsukatsuki/.tnsrc ]; then 
-    source /Users/tsukatsuki/.tnsrc 
-fi
-###-tns-completion-end-###
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export PATH="$HOME/.fastlane/bin:$PATH"
-#source /usr/local/share/zsh/site-functions/pyenv.zsh
-
-###-tns-completion-start-###
-if [ -f /Users/AlexLeung/.tnsrc ]; then 
-    source /Users/AlexLeung/.tnsrc 
-fi
-###-tns-completion-end-###
 export HOMEBREW_NO_AUTO_UPDATE=1
 export GPG_TTY=$(tty)
 if [ $commands[minikube] ]; then
