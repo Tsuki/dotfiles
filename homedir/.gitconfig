@@ -182,13 +182,13 @@
 
 [credential]
     # cache creds (git help credential-cache)
-  helper = cache
+	helper = osxkeychain
 
 [filter "tabspace"]
   clean = expand -t 4
 
 [push]
-  default = matching
+	default = current
     followTags = true
 
 [filter "media"]
